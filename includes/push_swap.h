@@ -6,10 +6,9 @@
 /*   By: nhamdan <nhamdan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:26:34 by nhamdan           #+#    #+#             */
-/*   Updated: 2022/12/18 11:01:34 by nhamdan          ###   ########.fr       */
+/*   Updated: 2022/12/18 12:12:06 by nhamdan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
