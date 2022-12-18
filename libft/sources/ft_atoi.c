@@ -6,48 +6,42 @@
 /*   By: nhamdan <nhamdan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:27:23 by nhamdan           #+#    #+#             */
-/*   Updated: 2022/12/18 12:09:35 by nhamdan          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:14:09 by nhamdan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	ft_atoi_overflow(int sign)
+void	error(void)
 {
-	if (sign < 0)
-		return (0);
-	return (-1);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
-/**
- * La  fonction ft_atoi() convertit le début de la chaîne pointée
- * par nptr en entier de type int.
- *
- * \param	nptr	Une chaine de caractère.
- * \return			Un entier signé de type int.
- */
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	unsigned long	nbr;
-	int				sign;
+	int			i;
+	int			sign;
+	long long	result;
 
-	while (ft_isspace(*nptr))
-		nptr++;
+	i = 0;
 	sign = 1;
-	if (*nptr == '+' || *nptr == '-')
+	result = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign = -sign;
+	if ((str[i - 1] == '-' || str[i - 1] == '+') && !str[i])
+		error();
+	while (str[i])
 	{
-		if (*nptr == '-')
-			sign = -1;
-		nptr++;
+		if (!(str[i] >= 48 && str[i] <= 57))
+			error();
+		else
+			result = result * 10 + str[i++] - '0';
 	}
-	nbr = 0;
-	while (ft_isdigit(*nptr))
-	{
-		if ((nbr * 10 + (*nptr - '0')) / 10 != nbr)
-			return (ft_atoi_overflow(sign));
-		nbr *= 10;
-		nbr += *nptr - '0';
-		nptr++;
-	}
-	return (sign * nbr);
+	if ((sign * result < -2147483648) || (sign * result > 2147483647))
+		error();
+	return (sign * result);
 }

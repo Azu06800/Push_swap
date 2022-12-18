@@ -6,7 +6,7 @@
 /*   By: nhamdan <nhamdan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:49:33 by nhamdan           #+#    #+#             */
-/*   Updated: 2022/12/18 11:05:24 by nhamdan          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:13:29 by nhamdan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	parse_array(t_stack *stacks, int ac, char **av, int start)
 	i = start;
 	while (i < (size_t) ac)
 	{
-		if (!check_number(av[i]))
+		if (!check_number(av[i]) && ft_strncmp(av[i], "-2147483648", 12))
 		{
 			ft_error();
 			exit(1);

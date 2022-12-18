@@ -6,7 +6,7 @@
 /*   By: nhamdan <nhamdan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:27:23 by nhamdan           #+#    #+#             */
-/*   Updated: 2022/12/18 12:09:21 by nhamdan          ###   ########.fr       */
+/*   Updated: 2022/12/18 12:30:52 by nhamdan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <limits.h>
 
 typedef struct s_node
 {
