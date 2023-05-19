@@ -1,81 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nhamdan <nhamdan@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/15 16:27:23 by nhamdan           #+#    #+#              #
-#    Updated: 2022/12/18 10:49:22 by nhamdan          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS =	ft_atoi.c ft_itoa.c \
+		ft_tolower.c ft_toupper.c \
+		ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
+		ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
+		ft_strdup.c ft_strjoin.c ft_strtrim.c ft_split.c ft_strmapi.c ft_striteri.c \
+		ft_bzero.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_calloc.c \
+		ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_substr.c \
+		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c
 
-NAME		:=	libft.a
 
-OBJECTS		:=	./bin
-SOURCES		:=	./sources
-INCLUDES	:=	./includes
+OBJS  = $(SRCS:.c=.o)
 
-FILES 		:=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
-				ft_islower.c ft_isupper.c ft_isprint.c ft_isspace.c \
-				ft_tolower.c ft_toupper.c \
-				ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-				ft_putstr_fd.c ft_putunbr_fd.c ft_putunbr_base_fd.c \
-				ft_bzero.c ft_calloc.c ft_memccpy.c ft_memchr.c \
-				ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c  \
-				ft_itoa.c ft_atoi.c ft_split.c \
-				ft_strcat.c ft_strchr.c ft_strcpy.c ft_strdup.c \
-				ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c \
-				ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
-				ft_strtrim.c ft_substr.c ft_striteri.c \
-				get_next_line.c \
-				ft_printf.c \
-				ft_printf/ft_printf_char.c \
-				ft_printf/ft_printf_decimal.c \
-				ft_printf/ft_printf_hex.c \
-				ft_printf/ft_printf_integer.c \
-				ft_printf/ft_printf_percent.c \
-				ft_printf/ft_printf_ptr.c \
-				ft_printf/ft_printf_string.c \
-				ft_printf/ft_printf_udecimal.c \
-				list/list_create.c \
-				list/list_create_node.c \
-				list/list_add_front.c \
-				list/list_add_back.c \
-				list/list_remove.c \
-				list/list_clear.c
+OBJS_B = $(SRCS_B:.c=.o)
 
-SRCS		:=	$(addprefix ${SOURCES}/, ${FILES})
-OBJS		:=	$(addprefix ${OBJECTS}/, $(FILES:.c=.o))
+NAME = libft.a
 
-CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror
+all: $(NAME)
 
-BLACK		:=	"\033[1;30m"
-RED			:=	"\033[1;31m"
-GREEN		:=	"\033[1;32m"
-CYAN		:=	"\033[1;35m"
-BLUE		:=	"\033[1;36m"
-WHITE		:=	"\033[1;37m"
-EOC			:=	"\033[0;0m"
+$(NAME): $(OBJS)
+			ar crs $(NAME) $(OBJS)
 
-${OBJECTS}/%.o : ${SOURCES}/%.c
-	@echo "● Compilation de "$(BLUE)"${notdir $<}"$(EOC)"."
-	@mkdir -p $(dir $@)
-	@${CC} ${CFLAGS} -c $^ -o $@
+bonus: $(OBJS_B)
+			ar crs $(NAME) $(OBJS_B)
 
-all: ${NAME}
-
-${NAME}: ${OBJS}
-	@echo $(GREEN)"● Generation de la librairie ${NAME}..."$(EOC)
-	@ar rcs ${NAME} ${OBJS}
+.c.o:
+	gcc -Werror -Wextra -Wall -c $< -o $(<:.c=.o)
 
 clean:
-	@rm -rf ${OBJECTS}
+	rm -rf $(OBJS) $(OBJS_B)
 
 fclean: clean
-	@rm -f ${NAME}
+	rm -rf $(NAME)
 
-re:	fclean all
+re: 	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

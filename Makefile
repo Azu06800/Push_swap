@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: nhamdan <nhamdan@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/22 10:49:33 by nhamdan           #+#    #+#              #
-#    Updated: 2022/12/18 10:58:12 by nhamdan          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME			:=	push_swap
 
 SOURCES			:=	./sources
@@ -18,24 +6,11 @@ OBJECTS			:=	./bin
 
 LIBFT			:=	./libft
 
-SRCS			:=	push_swap.c \
-					ft_error.c \
-					ft_tab.c \
-					ft_stack.c \
-					ft_check.c \
-					ft_parse.c \
-					ft_sort.c \
-					operations/ft_pa.c \
-					operations/ft_pb.c \
-					operations/ft_ra.c \
-					operations/ft_rb.c \
-					operations/ft_rr.c \
-					operations/ft_rra.c \
-					operations/ft_rrb.c \
-					operations/ft_rrr.c \
-					operations/ft_sa.c \
-					operations/ft_sb.c \
-					operations/ft_ss.c
+SRCS 			:=	push_swap.c \
+					parsing.c \
+					ps_utils1.c \
+					commands.c \
+					sort_functions.c
 
 OBJS			:=	$(addprefix ${OBJECTS}/, $(SRCS:.c=.o))
 
